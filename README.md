@@ -1,0 +1,1 @@
+Este proyecto consiste en el diseño y la implementación de una base de datos relacional para la gestión de una biblioteca. El sistema permite controlar de manera eficiente el inventario de libros, el registro de autores, el alta de los usuarios y el seguimiento de los préstamos realizados con sus respectivas fechas de retiro y devolución
