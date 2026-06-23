@@ -25,36 +25,34 @@ DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `crear_usuario` (IN `id` VARCHAR(10), IN `nombre` VARCHAR(50))   
+CREATE DEFINER=`root`@`localhost` PROCEDURE  IF NOT EXISTS `crear_usuario` (IN `id` VARCHAR(10), IN `nombre` VARCHAR(50))   
 BEGIN
 INSERT INTO usuario(carnet_usuario,nombre_usuario)
 values(id, nombre);
 end$$
 
 DELIMITER ;
--- --------------------------------------------------------
 --
 -- Estructura de tabla para la tabla `libro`
 –
-CREATE TABLE `autor` (
+CREATE TABLE IF NOT EXISTS `autor` (
   `id_autor` INT PRIMARY KEY NOT NULL,
   `nombre_autor` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `libro` (
+CREATE TABLE IF NOT EXISTS `libro` (
   `libro_isbn` varchar(7) NOT NULL,
   `titulo_libro` varchar(50) DEFAULT NULL,
   `id_autor` INT DEFAULT NULL,
   FOREIGN KEY (id_autor) REFERENCES autor(id_autor)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `prestamo`
 --
 
-CREATE TABLE `prestamo` (
+CREATE TABLE IF NOT EXISTS `prestamo` (
   `id_prestamo` int(11) NOT NULL,
   `fecha_prestamo` date DEFAULT NULL,
   `fecha_devuelta` date DEFAULT NULL,
@@ -62,13 +60,12 @@ CREATE TABLE `prestamo` (
   `libro_isbn` varchar(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuario`
 --
 
-CREATE TABLE `usuario` (
+CREATE TABLE IF NOT EXISTS `usuario` (
   `carnet_usuario` varchar(10) NOT NULL,
   `nombre_usuario` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
